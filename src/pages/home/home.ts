@@ -15,6 +15,10 @@ export class HomePage {
   }
 
   ngOnInit() {
+    
+  }
+
+  download() {
     const fileTransfer = this.transfer.create();
     var directory = this.file.dataDirectory;
     console.log(directory);
@@ -25,8 +29,10 @@ export class HomePage {
     fileTransfer.download("https://www.foodsconnected.com/Images/logo/foodsconnected_logo_blue.png", directory + "test.png")
       .then(entry => {
         console.log(entry);
+        alert("Downloaded");
       }, (err) => {
         console.log(err);
+        alert("error");
       });
   }
 }
