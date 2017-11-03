@@ -55,12 +55,6 @@ export class HomePage {
   }
 
   getImage2() {
-    this.file.resolveLocalFilesystemUrl(this.directory + "test.png")
-      .then(entry => {
-        this.img2 = entry.nativeURL;
-      })
-      .catch(err => {
-        console.log(err);
-      })
+    this.img2 = this.directory + "test.png";
   }
 }
