@@ -12,49 +12,33 @@ export class HomePage {
 
   private fileTransfer;
   private directory;
-
   public img;
-  public img2;
 
   constructor(private file: File, private transfer: FileTransfer) {
 
   }
 
   ngOnInit() {
-    this.fileTransfer = this.transfer.create();
-    this.directory = normalizeURL(this.file.dataDirectory);
+  
   }
 
   download() {
+    const fileTransfer = this.transfer.create();
+    var directory = this.file.dataDirectory;
+    console.log(directory);
+    this.directory = normalizeURL(directory);
     console.log(this.directory);
 
-    this.fileTransfer.download("https://www.foodsconnected.com/Images/logo/foodsconnected_logo_blue.png", this.directory + "test.png")
+
+    fileTransfer.download("https://www.foodsconnected.com/Images/logo/foodsconnected_logo_blue.png", this.directory + "test.png")
       .then(entry => {
         console.log(entry);
-        alert("Downloaded");
       }, (err) => {
         console.log(err);
-        alert("error");
       });
   }
 
   getImage() {
-    this.file.resolveDirectoryUrl(this.directory)
-      .then(directoryEntry => {
-        this.file.getFile(directoryEntry, "test.png", {create: false})
-          .then(fileEntry => {
-            this.img = fileEntry.nativeURL;
-          }, err => {
-            console.log("get file error", err);
-          });
-
-      }, err => {
-        console.log(err);
-      })
-
-  }
-
-  getImage2() {
-    this.img2 = this.directory + "test.png";
+    this.img = this.directory + "test.png";
   }
 }
